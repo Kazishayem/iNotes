@@ -188,7 +188,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             </div>
 
 
-            <button type="submit" class="btn btn-primary">Add Note</button>
+            <button type="submit" class="btn btn btn-success">Add Note</button>
         </form>
 
     </div>
@@ -220,7 +220,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
       <th scope='row'>".$sno."</th>
       <td>".$row['title']."</td>
       <td>".$row['description'] ."</td>
-      <td><button class='edit btn btn-sm btn-primary'>Edit</button> <a href='/del'>Delete</a></td>
+      <td><button class='edit btn btn-sm btn btn-success'>Edit</button> <button class='delete btn btn-sm btn btn-danger'>Delete</button> </td>
     </tr>";
     
 
