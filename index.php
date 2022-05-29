@@ -74,11 +74,52 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     });
     </script>
 
+
+
 </head>
 
 
 
 <body>
+
+<!-- Edit modal -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModel">
+  Edit Modal
+</button> -->
+
+<!-- Modal -->
+<div class="modal fade" id="editModel" tabindex="-1" aria-labelledby="editModelLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Note</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/php_crud/index.php" method="POST">
+            <div class="mb-3">
+                <label for="title" class="form-label">Note Title</label>
+                <input type="text" class="form-control" name="titleEdit" id="titleEdit" aria-describedby="emailHelp">
+
+            </div>
+
+            <div class="mb-3">
+                <label for="description" class="form-label">Note Description</label>
+                <textarea class="form-control" name="descriptionEdit" id="descriptionEdit" rows="3"></textarea>
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">Add Note</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">iNotes</a>
@@ -179,7 +220,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
       <th scope='row'>".$sno."</th>
       <td>".$row['title']."</td>
       <td>".$row['description'] ."</td>
-      <td><a href='/edit'>Edit</a> <a href='/del'>Delete</a></td>
+      <td><button class='edit btn btn-sm btn-primary'>Edit</button> <a href='/del'>Delete</a></td>
     </tr>";
     
 
@@ -194,6 +235,24 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
     </script>
+        <script>
+            edits = document.getElementsByClassName('edit');
+            Array.from(edits).forEach((element) =>{
+                element.addEventListener("click" ,(e) =>{
+                    console.log('edit' , );
+                    tr = e.target.parentNode.parentNode;
+                    title = tr.getElementsByTagName("td")[0].innerText;
+                    description= tr.getElementsByTagName("td")[1].innerText;
+                    console.log(title ,description);
+                    titleEdit.value = title;
+                    descriptionEdit.value = description;
+
+                    $("#editModel").model();
+
+                    
+                })
+            })
+        </script>
 </body>
 
 </html>
